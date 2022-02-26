@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'learn-ngrx';
+  contador = 0;
+
+  decrementar() {
+    this.contador -= 1;
+  }
+
+  incrementar() {
+    this.contador += 1;
+  }
 }
