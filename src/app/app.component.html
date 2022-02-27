@@ -1,8 +1,8 @@
-<h1>App component: {{contador}}</h1>
+<h1>App component: {{(contador$ | async) || 0}}</h1>
 <br>
 <button (click)="decrementar()">Decrementar</button>
 &nbsp;
 <button (click)="incrementar()">Incrementar</button>
 <br>
 
-<app-display-contador [contador]="contador"></app-display-contador>
+<app-display-contador></app-display-contador>

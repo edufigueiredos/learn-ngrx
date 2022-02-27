@@ -1,4 +1,7 @@
+import { map } from 'rxjs/operators';
+import { IAppState } from './../store/app.state';
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-display-contador',
@@ -7,9 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DisplayContadorComponent implements OnInit {
 
-  @Input() contador = 0;
+  contador$ = this.store.select('appStore').pipe(map(e => e.counter));
+  constructor(private store: Store<{ appStore: IAppState }>) { }
 
-  constructor() { }
 
   ngOnInit(): void {
   }
