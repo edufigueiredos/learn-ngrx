@@ -6,3 +6,7 @@
 <br>
 
 <app-display-contador></app-display-contador>
+<br>
+
+<input #inputContador type="number" style="margin-top: 20px;">
+<button (click)="definirContador(inputContador.valueAsNumber)">Definir</button>

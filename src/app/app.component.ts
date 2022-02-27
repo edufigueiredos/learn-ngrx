@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { decrementaContador, IAppState, incrementaContador } from './store/app.state';
+import { decrementaContador, defineContador, IAppState, incrementaContador } from './store/app.state';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -20,5 +20,9 @@ export class AppComponent {
 
   incrementar() {
     this.store.dispatch(incrementaContador());
+  }
+
+  definirContador(valor: number) {
+    this.store.dispatch(defineContador({payload: valor}))
   }
 }
