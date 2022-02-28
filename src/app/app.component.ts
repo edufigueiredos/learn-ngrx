@@ -1,3 +1,4 @@
+import { appSelector, contadorSelector } from './store/app.selectors';
 import { ITodo } from './models/todo.model';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -12,12 +13,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   title = 'learn-ngrx';
-  contador$ = this.store.select('appStore').pipe(map(e => e.counter));
+  contador$ = this.store.select(contadorSelector);
 
-  constructor(
-    private store: Store<{ appStore: IAppState }>,
-    private http: HttpClient
-  ) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
 

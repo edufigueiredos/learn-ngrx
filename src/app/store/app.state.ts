@@ -14,7 +14,10 @@ export const appInitialState: IAppState = {
 export const incrementaContador = createAction('[App] Aumenta contador');
 export const decrementaContador = createAction('[App] Reduz contador');
 export const defineContador = createAction('[App] Define contador', props<{ payload: number }>());
-export const setTodos = createAction('[App] Define Todos', props<{ payload: ITodo[] }>())
+
+export const carregaTodos = createAction('[App] Carrega Todos');
+export const setTodos = createAction('[App] Define Todos', props<{ payload: ITodo[] }>());
+export const sucessoCarregaTodos = createAction('[App] [Sucesso] Carrega Todos');
 
 export const appReducer = createReducer(
   appInitialState,
@@ -43,7 +46,7 @@ export const appReducer = createReducer(
     }
     return state;
   }),
-  on(setTodos, (state, {payload}) => {
+  on(setTodos, (state, { payload }) => {
     state = {
       ...state,
       todos: payload

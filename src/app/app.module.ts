@@ -11,6 +11,8 @@ import { environment } from '../environments/environment';
 import { DetalhesUsuarioComponent } from './detalhes-usuario/detalhes-usuario.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TodoComponent } from './todo/todo.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffectService } from './store/todo-effect.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { TodoComponent } from './todo/todo.component';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ appStore: appReducer }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([TodoEffectService])
   ],
   providers: [],
   bootstrap: [AppComponent]
