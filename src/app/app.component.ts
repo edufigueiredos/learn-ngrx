@@ -1,18 +1,27 @@
-import { Component } from '@angular/core';
+import { ITodo } from './models/todo.model';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { decrementaContador, defineContador, IAppState, incrementaContador } from './store/app.state';
 import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'learn-ngrx';
   contador$ = this.store.select('appStore').pipe(map(e => e.counter));
 
-  constructor(private store: Store<{ appStore: IAppState }>) { }
+  constructor(
+    private store: Store<{ appStore: IAppState }>,
+    private http: HttpClient
+  ) { }
+
+  ngOnInit(): void {
+
+  }
 
   decrementar() {
     this.store.dispatch(decrementaContador());
@@ -23,6 +32,6 @@ export class AppComponent {
   }
 
   definirContador(valor: number) {
-    this.store.dispatch(defineContador({payload: valor}))
+    this.store.dispatch(defineContador({ payload: valor }))
   }
 }

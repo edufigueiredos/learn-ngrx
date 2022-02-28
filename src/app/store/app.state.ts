@@ -1,16 +1,20 @@
+import { ITodo } from './../models/todo.model';
 import { createAction, createReducer, on, props } from "@ngrx/store";
 
 export interface IAppState {
   counter: number;
+  todos: ITodo[];
 }
 
 export const appInitialState: IAppState = {
-  counter: 0
+  counter: 2,
+  todos: []
 };
 
 export const incrementaContador = createAction('[App] Aumenta contador');
 export const decrementaContador = createAction('[App] Reduz contador');
 export const defineContador = createAction('[App] Define contador', props<{ payload: number }>());
+export const setTodos = createAction('[App] Define Todos', props<{ payload: ITodo[] }>())
 
 export const appReducer = createReducer(
   appInitialState,
@@ -36,6 +40,13 @@ export const appReducer = createReducer(
     state = {
       ...state,
       counter: payload
+    }
+    return state;
+  }),
+  on(setTodos, (state, {payload}) => {
+    state = {
+      ...state,
+      todos: payload
     }
     return state;
   })
